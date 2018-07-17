@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-#This takes the Mitos anotated fasta file and makes into individual aligned gene files and one concatenated file with the genes in the same order for phylogegentic reconstruction and the partition file for RaxML
+#This takes the Mitos annotated fasta file and makes into individual aligned gene files and one concatenated file with the genes in the same order for phylogegentic reconstruction and the partition file for RaxML
 # needs MAFFT in the PATH
 #needs a file with the sample names without extension. Same name as in the Mitos output. (eg. if the Mitos output is Contig1.fas, it should read Contig1)  This file should be called "contig_list.txt"
 
 
 #Preping the mitos output so the actual sequences are in one line
-#this is the mitos annotated fasta
+#this is the mitos annotated fasta. Only Mitos annotated fasta should be in the folder, and should end in .fas  
 for input in `ls *fas`
         do
           	awk  '{if(/[A|T|C|G|a|t|c|g]$/){printf "%s",$0}else{print}}' ${input} | sed 's/>/\n>/g' > ${input}_seq.fasta
